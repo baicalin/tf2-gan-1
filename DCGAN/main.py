@@ -13,7 +13,7 @@ import tensorflow_docs.vis.embed as embed
 from absl import app, flags
 from tqdm import tqdm
 
-from dc_gan import Discriminator, Generator
+from model import Discriminator, Generator
 
 FLAGS = flags.FLAGS
 
@@ -93,7 +93,6 @@ def main(_):
         outputs = Discriminator(FLAGS.num_filters)(inputs)
         discriminator = tf.keras.Model(inputs=inputs, outputs=outputs)
 
-    seed = tf.random.normal([FLAGS.num_examples, 1, 1, FLAGS.latent_vector])
 
     @tf.function
     def train_step(images):
@@ -145,6 +144,8 @@ def main(_):
     if not os.path.exists(FLAGS.save_folder):
          os.makedirs(FLAGS.save_folder)
             
+    seed = tf.random.normal([FLAGS.num_examples, 1, 1, FLAGS.latent_vector])
+    
     for epoch in tqdm(range(FLAGS.epochs)):
         start = time.time()
         gen_loss = 0
@@ -159,10 +160,7 @@ def main(_):
 
         gen_loss /= num_batch
         disc_loss /= num_batch
-
-        if (epoch + 1) % 15 == 0:
-            checkpoint.save(file_prefix=checkpoint_prefix)
-
+        
         print("Epoch {}, gen_loss  {:.5f} \n disc_loss {:.5f}\n".format(
             epoch, gen_loss, disc_loss))
 
