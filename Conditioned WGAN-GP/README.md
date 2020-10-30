@@ -1,4 +1,4 @@
-See [FiLM: Visual Reasoning with a General Conditioning Layer](https://arxiv.org/pdf/1709.07871.pdf) for details regarding FiLM and [Improved Training of Wasserstein GANs](https://arxiv.org/pdf/1704.00028.pdf) for details regarding WGAN-GP
+See [FiLM: Visual Reasoning with a General Conditioning Layer](https://arxiv.org/pdf/1709.07871.pdf) for details regarding FiLM and [Improved Training of Wasserstein GANs](https://arxiv.org/pdf/1704.00028.pdf) for details regarding Conditioned WGAN-GP
 
 ## Training       
 ```                                                                                                          
